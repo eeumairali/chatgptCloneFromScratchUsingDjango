@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}ChatGPT Clone{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <!-- Simple CSS for beauty -->
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #222;
+        }
+        header {
+            background: #4f8cff;
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(79,140,255,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+        nav {
+            margin-top: 1rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #e0eaff;
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(79,140,255,0.08);
+            padding: 2rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #888;
+            font-size: 0.95rem;
+            margin-top: 2rem;
+        }
+        .btn {
+            background: #4f8cff;
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #357ae8;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <h1>ChatGPT Clone</h1>
+        <nav>
+            <a href="{% url 'profile' %}">Home</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        <!-- Page content goes here -->
+        {% endblock %}
+    </main>
+    <footer>
+        &copy; {{ year|default:2024 }} ChatGPT Clone. All rights reserved.
+    </footer>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

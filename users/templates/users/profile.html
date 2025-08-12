@@ -1,0 +1,15 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Profile - ChatGPT Clone{% endblock %}
+
+{% block content %}
+    <h1>Welcome to Your Profile</h1>
+    <p>Welcome, {{ user.username }}!</p>
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Logout</a>
+    {% endif %}
+
+    {% if user.is_anonymous %}
+        <p>You are not logged in. Please <a href="{% url 'login' %}">login</a> to access more features.</p>
+    {% endif %}
+{% endblock %}
