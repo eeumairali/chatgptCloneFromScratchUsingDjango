@@ -32,11 +32,7 @@ MONGO_DB = 'chatgpt_clone'
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/chat/"
  
-import openai
 
-OPEN_API_KEY = os.getenv("OPEN_API_KEY")
-
-openai.api_key = OPEN_API_KEY
 
 
 # SECURITY WARNING: don't run with debug turned on in production!

@@ -21,7 +21,7 @@
   <p><a href="{% url 'chat_new' %}">+ New chat</a></p><hr>
   {% for c in chats %}
     <div class="item">
-      <a href="{% url 'chat_open' c._id %}">{{ c.title|default:"Untitled" }}</a><br>
+  <a href="{% url 'chat_open' c.id %}">{{ c.title|default:"Untitled" }}</a><br>
       <small>{{ c.updated_at }}</small>
     </div>
   {% empty %}

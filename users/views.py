@@ -1,3 +1,5 @@
+def default_page(request):
+    return render(request, 'users/default.html')
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, aauthenticate
 from django.contrib.auth.models import User
@@ -37,3 +39,8 @@ def register(request):
         login(request, user)
         return redirect('profile')
     return render(request, 'users/register.html')   
+
+
+
+def default_page(request):
+    return render(request, 'users/default.html')
