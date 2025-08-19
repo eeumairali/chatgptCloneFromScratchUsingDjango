@@ -1,6 +1,9 @@
 {% extends 'users/base.html' %}
 
+{% block title %}Register - ChatGPT Clone{% endblock %}
+
 {% block content %}
+<div class="container">
   <h2>Register</h2>
   <form method="post">
     {% csrf_token %}
@@ -15,4 +18,5 @@
     <br>
     <button type="submit">Register</button>
   </form>
+</div>
 {% endblock %}

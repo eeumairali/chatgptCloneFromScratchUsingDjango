@@ -34,7 +34,16 @@
     {% for m in messages %}
       <div class="msg">
         {% if m.user == 'assistant' %}
-          <div class="assistant"><b>Assistant:</b> {{ m.message }}</div>
+          <div class="assistant">
+            <b>Assistant:</b> {{ m.main_message }}
+            {% if m.think_message %}
+              <button type="button" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block')">Show/Hide Think</button>
+              <div style="display:none; margin-top:8px; background:#ffe; border:1px solid #ccc; padding:8px; border-radius:6px;">
+                <b>Assistant's thoughts:</b><br>
+                {{ m.think_message }}
+              </div>
+            {% endif %}
+          </div>
         {% else %}
           <div><b>{{ m.user }}:</b> {{ m.message }}</div>
         {% endif %}

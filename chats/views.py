@@ -18,10 +18,25 @@ def _render(request, cid):
     for c in chats:
         if "_id" in c:
             c["id"] = c.pop("_id")
+    import re
     doc = get_chat(request.user.id, cid)
     messages = doc["messages"] if doc else []
+    # Split <think>...</think> from assistant messages
+    processed_messages = []
+    for m in messages:
+        if m.get("user") == "assistant" and "<think>" in m["message"] and "</think>" in m["message"]:
+            think_match = re.search(r'<think>(.*?)</think>', m["message"], re.DOTALL)
+            think_message = think_match.group(1).strip() if think_match else ""
+            main_message = re.sub(r'<think>.*?</think>', '', m["message"], flags=re.DOTALL).strip()
+            processed_messages.append({
+                **m,
+                "main_message": main_message,
+                "think_message": think_message
+            })
+        else:
+            processed_messages.append({**m, "main_message": m["message"], "think_message": None})
     return render(request, "chats/index.html", {
-        "cid": cid, "chats": chats, "messages": messages
+        "cid": cid, "chats": chats, "messages": processed_messages
     })
 
 @login_required
